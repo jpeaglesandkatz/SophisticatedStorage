@@ -70,7 +70,7 @@ public class StorageInputBlockEntity extends StorageIOBlockEntity {
 
 		@Override
 		public int getSlotLimit(int slot) {
-			return 64;
+			return 99;
 		}
 
 		@Override
