@@ -281,7 +281,6 @@ public class ModBlocks {
 	private static final DeferredRegister<RecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister.create(BuiltInRegistries.RECIPE_SERIALIZER, SophisticatedStorage.MOD_ID);
 	public static final Supplier<SimpleCraftingRecipeSerializer<?>> STORAGE_DYE_RECIPE_SERIALIZER = RECIPE_SERIALIZERS.register("storage_dye", () -> new SimpleCraftingRecipeSerializer<>(StorageDyeRecipe::new));
 	public static final Supplier<RecipeSerializer<?>> STORAGE_TIER_UPGRADE_RECIPE_SERIALIZER = RECIPE_SERIALIZERS.register("storage_tier_upgrade", StorageTierUpgradeRecipe.Serializer::new);
-	public static final Supplier<RecipeSerializer<?>> SHULKER_BOX_FROM_VANILLA_SHAPED_RECIPE_SERIALIZER = RECIPE_SERIALIZERS.register("shulker_box_from_vanilla_shaped", ShulkerBoxFromVanillaShapedRecipe.Serializer::new);
 	public static final Supplier<RecipeSerializer<?>> SHULKER_BOX_FROM_VANILLA_SHAPELESS_RECIPE_SERIALIZER = RECIPE_SERIALIZERS.register("shulker_box_from_vanilla_shapeless", ShulkerBoxFromVanillaShapelessRecipe.Serializer::new);
 	public static final Supplier<RecipeSerializer<?>> STORAGE_TIER_UPGRADE_SHAPELESS_RECIPE_SERIALIZER = RECIPE_SERIALIZERS.register("storage_tier_upgrade_shapeless", StorageTierUpgradeShapelessRecipe.Serializer::new);
 	public static final Supplier<RecipeSerializer<?>> SHULKER_BOX_FROM_CHEST_RECIPE_SERIALIZER = RECIPE_SERIALIZERS.register("shulker_box_from_chest", ShulkerBoxFromChestRecipe.Serializer::new);
