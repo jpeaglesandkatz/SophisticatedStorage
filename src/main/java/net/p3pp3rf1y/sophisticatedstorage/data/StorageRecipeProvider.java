@@ -345,7 +345,7 @@ public class StorageRecipeProvider extends RecipeProvider {
 				.unlockedBy("has_shulker_shell", has(Items.SHULKER_SHELL))
 				.save(recipeOutput);
 
-		ShapelessBasedRecipeBuilder.shapeless(ModBlocks.SHULKER_BOX_ITEM.get())
+		ShapelessBasedRecipeBuilder.shapeless(ModBlocks.SHULKER_BOX_ITEM.get(), ShulkerBoxFromVanillaShapelessRecipe::new)
 				.requires(Items.SHULKER_BOX).requires(Items.REDSTONE_TORCH)
 				.unlockedBy("has_shulker_box", has(Items.SHULKER_BOX))
 				.save(recipeOutput, "shulker_box_from_vanilla_shulker_box");
@@ -1135,7 +1135,7 @@ public class StorageRecipeProvider extends RecipeProvider {
 
 	private void tintedShulkerBoxRecipe(RecipeOutput recipeOutput, Block vanillaShulkerBox, DyeColor dyeColor) {
 		String vanillaShulkerBoxName = BuiltInRegistries.BLOCK.getKey(vanillaShulkerBox).getPath();
-		ShapelessBasedRecipeBuilder.shapeless(ModBlocks.SHULKER_BOX.get().getTintedStack(dyeColor)).requires(vanillaShulkerBox).requires(Items.REDSTONE_TORCH)
+		ShapelessBasedRecipeBuilder.shapeless(ModBlocks.SHULKER_BOX.get().getTintedStack(dyeColor), ShulkerBoxFromVanillaShapelessRecipe::new).requires(vanillaShulkerBox).requires(Items.REDSTONE_TORCH)
 				.unlockedBy("has_" + vanillaShulkerBoxName, has(vanillaShulkerBox))
 				.save(recipeOutput, SophisticatedStorage.getRL(vanillaShulkerBoxName + "_to_sophisticated"));
 	}
