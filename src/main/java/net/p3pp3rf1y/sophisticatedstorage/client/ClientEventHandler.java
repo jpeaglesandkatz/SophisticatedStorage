@@ -264,6 +264,7 @@ public class ClientEventHandler {
 		event.registerBlockEntityRenderer(ModBlocks.CHEST_BLOCK_ENTITY_TYPE.get(), ChestRenderer::new);
 		event.registerBlockEntityRenderer(ModBlocks.SHULKER_BOX_BLOCK_ENTITY_TYPE.get(), ShulkerBoxRenderer::new);
 		event.registerBlockEntityRenderer(ModBlocks.CONTROLLER_BLOCK_ENTITY_TYPE.get(), context -> new ControllerRenderer());
+		event.registerBlockEntityRenderer(ModBlocks.DECORATION_TABLE_BLOCK_ENTITY_TYPE.get(), DecorationTableRenderer::new);
 	}
 
 	private static void registerStorageClientExtensions(RegisterClientExtensionsEvent event) {
@@ -279,8 +280,8 @@ public class ClientEventHandler {
 	}
 
 	private static void registerBarrelClientExtensions(RegisterClientExtensionsEvent event, BarrelBlock... barrelBlocks) {
-		for (int i = 0; i < barrelBlocks.length; i++) {
-			event.registerBlock(new BarrelBlockClientExtensions(barrelBlocks[i]), barrelBlocks[i]);
+		for (BarrelBlock barrelBlock : barrelBlocks) {
+			event.registerBlock(new BarrelBlockClientExtensions(barrelBlock), barrelBlock);
 		}
 	}
 }

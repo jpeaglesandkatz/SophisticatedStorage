@@ -40,10 +40,7 @@ import net.p3pp3rf1y.sophisticatedcore.util.BlockItemBase;
 import net.p3pp3rf1y.sophisticatedstorage.Config;
 import net.p3pp3rf1y.sophisticatedstorage.SophisticatedStorage;
 import net.p3pp3rf1y.sophisticatedstorage.block.*;
-import net.p3pp3rf1y.sophisticatedstorage.common.gui.LimitedBarrelContainerMenu;
-import net.p3pp3rf1y.sophisticatedstorage.common.gui.LimitedBarrelSettingsContainerMenu;
-import net.p3pp3rf1y.sophisticatedstorage.common.gui.StorageContainerMenu;
-import net.p3pp3rf1y.sophisticatedstorage.common.gui.StorageSettingsContainerMenu;
+import net.p3pp3rf1y.sophisticatedstorage.common.gui.*;
 import net.p3pp3rf1y.sophisticatedstorage.crafting.*;
 import net.p3pp3rf1y.sophisticatedstorage.item.BarrelBlockItem;
 import net.p3pp3rf1y.sophisticatedstorage.item.ChestBlockItem;
@@ -216,6 +213,10 @@ public class ModBlocks {
 	public static final Supplier<BlockItem> STORAGE_INPUT_ITEM = ITEMS.register(STORAGE_INPUT_REG_NAME, () -> new BlockItemBase(STORAGE_INPUT.get(), new Properties()));
 	public static final Supplier<BlockItem> STORAGE_OUTPUT_ITEM = ITEMS.register(STORAGE_OUTPUT_REG_NAME, () -> new BlockItemBase(STORAGE_OUTPUT.get(), new Properties()));
 
+	public static final Supplier<DecorationTableBlock> DECORATION_TABLE = BLOCKS.register("decoration_table", DecorationTableBlock::new);
+
+	public static final Supplier<BlockItem> DECORATION_TABLE_ITEM = ITEMS.register("decoration_table", () -> new BlockItemBase(DECORATION_TABLE.get(), new Properties()));
+
 	@SuppressWarnings("ConstantConditions") //no datafixer type needed
 	public static final Supplier<BlockEntityType<BarrelBlockEntity>> BARREL_BLOCK_ENTITY_TYPE = BLOCK_ENTITY_TYPES.register(BARREL_REG_NAME, () ->
 			BlockEntityType.Builder.of(BarrelBlockEntity::new, BARREL.get(), COPPER_BARREL.get(), IRON_BARREL.get(), GOLD_BARREL.get(), DIAMOND_BARREL.get(), NETHERITE_BARREL.get())
@@ -266,6 +267,10 @@ public class ModBlocks {
 			BlockEntityType.Builder.of(StorageOutputBlockEntity::new, STORAGE_OUTPUT.get())
 					.build(null));
 
+	public static final Supplier<BlockEntityType<DecorationTableBlockEntity>> DECORATION_TABLE_BLOCK_ENTITY_TYPE = BLOCK_ENTITY_TYPES.register("decoration_table", () ->
+			BlockEntityType.Builder.of(DecorationTableBlockEntity::new, DECORATION_TABLE.get())
+					.build(null));
+
 	public static final Supplier<MenuType<StorageContainerMenu>> STORAGE_CONTAINER_TYPE = MENU_TYPES.register("storage",
 			() -> IMenuTypeExtension.create(StorageContainerMenu::fromBuffer));
 
@@ -278,6 +283,9 @@ public class ModBlocks {
 	public static final Supplier<MenuType<LimitedBarrelSettingsContainerMenu>> LIMITED_BARREL_SETTINGS_CONTAINER_TYPE = MENU_TYPES.register("limited_barrel_settings",
 			() -> IMenuTypeExtension.create(LimitedBarrelSettingsContainerMenu::fromBuffer));
 
+	public static final Supplier<MenuType<DecorationTableMenu>> DECORATION_TABLE_CONTAINER_TYPE = MENU_TYPES.register("decoration_table",
+			() -> IMenuTypeExtension.create(DecorationTableMenu::fromBuffer));
+
 	private static final DeferredRegister<RecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister.create(BuiltInRegistries.RECIPE_SERIALIZER, SophisticatedStorage.MOD_ID);
 	public static final Supplier<SimpleCraftingRecipeSerializer<?>> STORAGE_DYE_RECIPE_SERIALIZER = RECIPE_SERIALIZERS.register("storage_dye", () -> new SimpleCraftingRecipeSerializer<>(StorageDyeRecipe::new));
 	public static final Supplier<RecipeSerializer<?>> STORAGE_TIER_UPGRADE_RECIPE_SERIALIZER = RECIPE_SERIALIZERS.register("storage_tier_upgrade", StorageTierUpgradeRecipe.Serializer::new);
@@ -288,7 +296,6 @@ public class ModBlocks {
 	public static final Supplier<SimpleCraftingRecipeSerializer<?>> BARREL_MATERIAL_RECIPE_SERIALIZER = RECIPE_SERIALIZERS.register("barrel_material", () -> new SimpleCraftingRecipeSerializer<>(BarrelMaterialRecipe::new));
 	private static final DeferredRegister<IngredientType<?>> INGREDIENT_TYPES = DeferredRegister.create(NeoForgeRegistries.Keys.INGREDIENT_TYPES, SophisticatedStorage.MOD_ID);
 	public static final Supplier<IngredientType<BaseTierWoodenStorageIngredient>> BASE_TIER_WOODEN_STORAGE_INGREDIENT_TYPE = INGREDIENT_TYPES.register("base_tier_wooden_storage", () -> new IngredientType<>(BaseTierWoodenStorageIngredient.CODEC));
-
 
 	public static void registerHandlers(IEventBus modBus) {
 		BLOCKS.register(modBus);

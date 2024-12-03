@@ -69,6 +69,16 @@ public class StorageRecipeProvider extends RecipeProvider {
 				.requires(Items.PAPER)
 				.unlockedBy("has_slime", has(Tags.Items.SLIMEBALLS))
 				.save(recipeOutput.withConditions(new DropPackedDisabledCondition()));
+
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.DECORATION_TABLE_ITEM.get())
+				.pattern("LLL")
+				.pattern("PBP")
+				.pattern("P P")
+				.define('L', ItemTags.LOGS)
+				.define('P', ItemTags.PLANKS)
+				.define('B', ModItems.UPGRADE_BASE.get())
+				.unlockedBy("has_upgrade_base", has(ModItems.UPGRADE_BASE.get()))
+				.save(recipeOutput);
 	}
 
 	private void addBackpackUpgradeConversionRecipes(RecipeOutput recipeOutput) {
