@@ -77,7 +77,7 @@ public class DecorationTableBlockEntity extends BlockEntity {
 
 		@Override
 		public boolean isItemValid(int slot, ItemStack stack) {
-			return switch(slot) {
+			return switch (slot) {
 				case RED_DYE_SLOT -> stack.is(Tags.Items.DYES_RED);
 				case GREEN_DYE_SLOT -> stack.is(Tags.Items.DYES_GREEN);
 				case BLUE_DYE_SLOT -> stack.is(Tags.Items.DYES_BLUE);
@@ -116,11 +116,15 @@ public class DecorationTableBlockEntity extends BlockEntity {
 		missingDyes.clear();
 
 		ItemStack storage = storageBlock.getStackInSlot(0);
-		if (storage.isEmpty() || ((InventoryHelper.isEmpty(decorativeBlocks) || isTintedStorage(storage)) && colorsTransparentOrSameAs(storage))) { //TODO once dyes and materials can be combined make sure to create combined result here
+		if (storage.isEmpty() || (
+				(InventoryHelper.isEmpty(decorativeBlocks)
+						|| !(storage.getItem() instanceof BarrelBlockItem)
+						|| isTintedStorage(storage)
+				) && colorsTransparentOrSameAs(storage))) { //TODO once dyes and materials can be combined make sure to create combined result here
 			result = ItemStack.EMPTY;
 			return;
 		}
-		if (InventoryHelper.isEmpty(decorativeBlocks) || isTintedStorage(storage)) {
+		if (!(storage.getItem() instanceof BarrelBlockItem) || InventoryHelper.isEmpty(decorativeBlocks) || isTintedStorage(storage)) {
 			result = storage.copy();
 			result.setCount(1);
 
@@ -133,10 +137,6 @@ public class DecorationTableBlockEntity extends BlockEntity {
 				}
 			}
 			calculateMissingDyes(storage);
-			return;
-		}
-
-		if (!(storage.getItem() instanceof BarrelBlockItem)) {
 			return;
 		}
 
