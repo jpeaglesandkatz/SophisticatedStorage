@@ -496,8 +496,8 @@ public class DecorationTableBlockEntity extends BlockEntity {
 
 	public Map<ResourceLocation, Integer> getPartsNeeded() {
 		Map<ResourceLocation, Integer> partsNeeded = new HashMap<>();
-		if (InventoryHelper.isEmpty(decorativeBlocks)) {
-			ItemStack storageStack = storageBlock.getStackInSlot(0);
+		ItemStack storageStack = storageBlock.getStackInSlot(0);
+		if (InventoryHelper.isEmpty(decorativeBlocks) || !(storageStack.getItem() instanceof BarrelBlockItem)) {
 			addDyePartsNeeded(storageStack, partsNeeded);
 
 		} else {
