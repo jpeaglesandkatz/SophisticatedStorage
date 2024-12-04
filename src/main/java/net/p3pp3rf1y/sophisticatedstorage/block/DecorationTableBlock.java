@@ -21,11 +21,11 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.p3pp3rf1y.sophisticatedcore.util.BlockBase;
 import net.p3pp3rf1y.sophisticatedstorage.common.gui.DecorationTableMenu;
+import net.p3pp3rf1y.sophisticatedstorage.init.ModBlocks;
 
 import javax.annotation.Nullable;
 
 public class DecorationTableBlock extends BlockBase implements EntityBlock {
-	//TODO block loot table and axe tag
 	public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
 	protected static final VoxelShape SHAPE = Shapes.or(
 			Block.box(0, 12, 0, 16, 16, 16),
@@ -67,6 +67,12 @@ public class DecorationTableBlock extends BlockBase implements EntityBlock {
 	public boolean onDestroyedByPlayer(BlockState state, Level level, BlockPos pos, Player player, boolean willHarvest, FluidState fluid) {
 		//TODO drop contents either here or in loot table
 		return super.onDestroyedByPlayer(state, level, pos, player, willHarvest, fluid);
+	}
+
+	@Override
+	protected void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean movedByPiston) {
+		level.getBlockEntity(pos, ModBlocks.DECORATION_TABLE_BLOCK_ENTITY_TYPE.get()).ifPresent(DecorationTableBlockEntity::dropContents);
+		super.onRemove(state, level, pos, newState, movedByPiston);
 	}
 
 	@Nullable
