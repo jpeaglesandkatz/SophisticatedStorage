@@ -1,16 +1,11 @@
 {
-  "neoforge:conditions": [
-    {
-      "type": "sophisticatedstorage:drop_packed_disabled"
-    }
-  ],
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_slime": {
+    "has_base_tier_wooden_storage": {
       "conditions": {
         "items": [
           {
-            "items": "#c:slime_balls"
+            "items": "#sophisticatedstorage:base_tier_wooden_storage"
           }
         ]
       },
@@ -18,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "sophisticatedstorage:packing_tape"
+        "recipe": "sophisticatedstorage:paintbrush"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_slime"
+      "has_base_tier_wooden_storage"
     ]
   ],
   "rewards": {
     "recipes": [
-      "sophisticatedstorage:packing_tape"
+      "sophisticatedstorage:paintbrush"
     ]
   }
 }

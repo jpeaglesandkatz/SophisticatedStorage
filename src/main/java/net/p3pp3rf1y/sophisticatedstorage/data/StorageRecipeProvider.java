@@ -65,9 +65,9 @@ public class StorageRecipeProvider extends RecipeProvider {
 		addBackpackUpgradeConversionRecipes(recipeOutput);
 
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.PACKING_TAPE.get())
-				.requires(Tags.Items.SLIMEBALLS)
+				.requires(Tags.Items.SLIME_BALLS)
 				.requires(Items.PAPER)
-				.unlockedBy("has_slime", has(Tags.Items.SLIMEBALLS))
+				.unlockedBy("has_slime", has(Tags.Items.SLIME_BALLS))
 				.save(recipeOutput.withConditions(new DropPackedDisabledCondition()));
 
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.DECORATION_TABLE_ITEM.get())
@@ -78,6 +78,15 @@ public class StorageRecipeProvider extends RecipeProvider {
 				.define('P', ItemTags.PLANKS)
 				.define('B', ModItems.UPGRADE_BASE.get())
 				.unlockedBy("has_upgrade_base", has(ModItems.UPGRADE_BASE.get()))
+				.save(recipeOutput);
+
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.PAINTBRUSH.get())
+				.pattern(" W ")
+				.pattern(" SW")
+				.pattern("S  ")
+				.define('S', Items.STICK)
+				.define('W', ItemTags.WOOL)
+				.unlockedBy("has_base_tier_wooden_storage", has(ModBlocks.BASE_TIER_WOODEN_STORAGE_TAG))
 				.save(recipeOutput);
 	}
 
